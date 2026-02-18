@@ -10,7 +10,6 @@ const techs = [
   { name: "CSS", icon: "css", color: "hover:border-blue-500/40" },
   { name: "MySQL", icon: "mysql", color: "hover:border-blue-400/40" },
   { name: "Git", icon: "git", color: "hover:border-orange-600/40" },
-  { name: "C#", icon: "csharp", color: "hover:border-purple-500/40" },
   { name: ".NET", icon: "dotnet", color: "hover:border-blue-600/40" },
   { name: "TensorFlow", icon: "tensorflow", color: "hover:border-orange-500/40" },
   { name: "Java", icon: "java", color: "hover:border-red-500/40" },
