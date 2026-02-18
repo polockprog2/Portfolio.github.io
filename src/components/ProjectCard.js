@@ -9,8 +9,8 @@ const ProjectCard = ({ project, index }) => {
   const x = useSpring(0, { stiffness: 100, damping: 30 });
   const y = useSpring(0, { stiffness: 100, damping: 30 });
 
-  const rotateX = useTransform(y, [-0.5, 0.5], [7, -7]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-7, 7]);
+  const rotateX = useTransform(y, [-0.5, 0.5], [4, -4]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-4, 4]);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;

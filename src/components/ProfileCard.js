@@ -32,8 +32,8 @@ const ProfileCard = () => {
   const x = useSpring(0, { stiffness: 100, damping: 30 });
   const y = useSpring(0, { stiffness: 100, damping: 30 });
 
-  const rotateX = useTransform(y, [-0.5, 0.5], [5, -5]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-5, 5]);
+  const rotateX = useTransform(y, [-0.5, 0.5], [3, -3]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-3, 3]);
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
