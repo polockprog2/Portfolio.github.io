@@ -1,46 +1,23 @@
 import React from "react";
-
-const blogs = [
-  {
-    name: "Starting and Growing a Career in Web Design",
-    description: "Apr 8, 2022 · 6min read",
-    link: "https://sawad.framer.website/blog/starting-a-career-in-web-design",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
-  },
-  {
-    name: "Create a Landing Page That Performs Great",
-    description: "Mar 15, 2022 · 6min read",
-    link: "https://sawad.framer.website/blog/create-a-landing-page-that-performs-great",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framer/framer-original.svg"
-  },
-];
+import { motion } from "framer-motion";
 
 const BlogSection = () => (
-  <section className="mt-16">
-    <div className="text-center mb-10">
-      <h2 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500 bg-clip-text text-transparent drop-shadow-lg">
-        Design Thoughts
-      </h2>
-      <p className="text-gray-400 mt-2">Latest insights and articles</p>
+  <section className="flex flex-col gap-10">
+    <div className="flex flex-col gap-2">
+      <h2 className="text-3xl font-black tracking-tight">LATEST THOUGHTS</h2>
+      <div className="w-20 h-1.5 bg-rose-500 rounded-full" />
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {blogs.map((blog, idx) => (
-        <a
-          key={idx}
-          href={blog.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group bg-white/5 backdrop-blur rounded-2xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/10 hover:border-cyan-400"
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-xl shadow group-hover:scale-110 transition-transform">
-              <img src={blog.icon} alt={blog.name} className="w-8 h-8 object-contain" />
-            </div>
-            <div className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">{blog.name}</div>
-          </div>
-          <div className="text-sm text-gray-300">{blog.description}</div>
-        </a>
-      ))}
+
+    <div className="ultra-glass rounded-[2.5rem] p-10 flex flex-col items-center justify-center text-center gap-4 border border-white/5">
+      <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center">
+        <span className="text-2xl">✍️</span>
+      </div>
+      <div className="flex flex-col gap-1">
+        <h3 className="text-xl font-black text-white uppercase tracking-tight">Coming Soon</h3>
+        <p className="text-slate-400 max-w-xs mx-auto">
+          Insights on Frontend Architecture, QA Automation, and Research Systems are on the way.
+        </p>
+      </div>
     </div>
   </section>
 );
