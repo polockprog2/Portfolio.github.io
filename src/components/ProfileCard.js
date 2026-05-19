@@ -111,7 +111,7 @@ const ProfileCard = () => {
 
           <div className="flex flex-wrap justify-center gap-2.5">
             {["React", "Django", "AI", "QA"].map(tag => (
-              <span key={tag} className="text-[10px] font-black tracking-widest uppercase px-4 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-500 group-hover:text-cyan-400 group-hover:bg-cyan-400/5 transition-all duration-300">
+              <span key={tag} className="text-[10px] font-black font-space tracking-widest uppercase px-4 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-500 group-hover:text-cyan-400 group-hover:bg-cyan-400/5 transition-all duration-300">
                 {tag}
               </span>
             ))}

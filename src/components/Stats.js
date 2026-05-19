@@ -19,9 +19,9 @@ const Stats = () => (
         className="group relative flex flex-col gap-3 min-w-[160px]"
       >
         <div className="flex flex-col gap-0.5">
-          <span className={`text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br ${stat.accent} tracking-tighter transition-all duration-700 group-hover:scale-110 origin-left`}>
+          <span className={`text-6xl font-black font-space text-transparent bg-clip-text bg-gradient-to-br ${stat.accent} tracking-tighter transition-all duration-700 group-hover:scale-110 origin-left`}>
             {stat.value}
-            <span className="text-2xl text-white ml-0.5 opacity-20">+</span>
+            <span className="text-2xl text-white ml-0.5 opacity-20 font-space">+</span>
           </span>
           <div className="w-12 h-1.5 bg-white/5 rounded-full overflow-hidden">
             <motion.div

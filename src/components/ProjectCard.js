@@ -1,109 +1,68 @@
-import React, { useRef, useState } from "react";
-import { motion, useSpring, useTransform } from "framer-motion";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import React from "react";
+import { motion } from "framer-motion";
+import { FiGithub } from "react-icons/fi";
 
 const ProjectCard = ({ project, index }) => {
-  const cardRef = useRef(null);
-  const [hovered, setHovered] = useState(false);
-
-  const x = useSpring(0, { stiffness: 100, damping: 30 });
-  const y = useSpring(0, { stiffness: 100, damping: 30 });
-
-  const rotateX = useTransform(y, [-0.5, 0.5], [4, -4]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-4, 4]);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    x.set(mouseX / rect.width - 0.5);
-    y.set(mouseY / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setHovered(false);
-  };
-
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative flex flex-col ultra-glass rounded-[2.5rem] overflow-hidden border-white/5 hover:border-cyan-400/30 transition-colors duration-700"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative flex flex-col h-full rounded-[2.5rem] ultra-glass border border-white/5 overflow-hidden transition-all duration-500 hover:border-cyan-400/20"
     >
-      {/* 3D Depth Elements */}
-      <div
-        style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}
-        className="relative h-64 overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/0 z-10 transition-colors duration-700" />
-        <motion.img
+      {/* Glow Effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/10 via-fuchsia-500/10 to-cyan-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+
+      {/* Image container */}
+      <div className="relative w-full h-[220px] overflow-hidden rounded-t-[2.5rem]">
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60" />
+        <img
           src={project.image}
           alt={project.name}
-          animate={{ scale: hovered ? 1.1 : 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-
-        {/* GitHub Link Overlay */}
-        <div
-          style={{ transform: "translateZ(20px)" }}
-          className="absolute top-6 right-6 z-20"
-        >
-          <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-3.5 bg-slate-950/80 backdrop-blur-xl rounded-2xl text-white hover:text-cyan-400 border border-white/10 shadow-2xl transition-colors"
-          >
-            <FiGithub className="w-6 h-6" />
-          </motion.a>
-        </div>
+        {/* Shine highlight */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shine-premium z-10" />
       </div>
 
-      {/* Content */}
-      <div
-        style={{ transform: "translateZ(30px)" }}
-        className="flex flex-col gap-5 p-10 relative"
-      >
+      {/* Content container */}
+      <div className="flex flex-col flex-grow p-8 gap-5 relative z-20">
+        {/* Tags */}
         <div className="flex flex-wrap gap-2">
-          {project.tags?.map(tag => (
-            <span key={tag} className="text-[9px] font-black tracking-[0.2em] uppercase px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-slate-500 group-hover:text-cyan-400 group-hover:bg-cyan-400/5 transition-all duration-300">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-[9px] font-black font-space tracking-widest uppercase px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-500 group-hover:text-cyan-400 group-hover:bg-cyan-400/5 transition-all duration-300"
+            >
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="text-3xl font-black text-white group-hover:text-cyan-400 transition-colors duration-300 tracking-tight leading-none uppercase">
-          {project.name}
-        </h3>
+        {/* Title and Description */}
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-black text-white group-hover:text-cyan-400 transition-colors duration-300 uppercase tracking-tight">
+            {project.name}
+          </h3>
+          <p className="text-slate-400 text-xs font-semibold leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
+        </div>
 
-        <p className="text-slate-400 text-sm leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-500 font-medium">
-          {project.description}
-        </p>
-
-        <div className="mt-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-[2px] bg-cyan-400/50 rounded-full group-hover:w-16 transition-all duration-700" />
-            <span className="text-[9px] font-black tracking-[0.3em] uppercase text-slate-600 group-hover:text-cyan-400/80 transition-colors">Case Study</span>
-          </div>
-          <motion.div
-            animate={{ x: hovered ? 5 : 0 }}
-            transition={{ duration: 0.3 }}
+        {/* Action Link */}
+        <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-white transition-colors">
+            View Source Code
+          </span>
+          <motion.a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-10 h-10 rounded-full bg-white/5 hover:bg-cyan-400 hover:text-slate-950 flex items-center justify-center border border-white/5 hover:border-cyan-400 text-white transition-colors duration-300"
           >
-            <FiExternalLink className="w-6 h-6 text-slate-700 group-hover:text-cyan-400 transition-colors duration-300" />
-          </motion.div>
+            <FiGithub className="w-4 h-4" />
+          </motion.a>
         </div>
       </div>
     </motion.div>

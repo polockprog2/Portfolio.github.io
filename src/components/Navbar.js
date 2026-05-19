@@ -37,7 +37,7 @@ const Navbar = () => {
             if (entry.isIntersecting) setActive(id);
           });
         },
-        { root: null, threshold: 0.5 }
+        { root: null, threshold: 0.25 }
       );
       obs.observe(el);
       observers.push(obs);
