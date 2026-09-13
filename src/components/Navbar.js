@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { FiHome, FiFolder, FiEdit2, FiMail } from "react-icons/fi";
+import { FiHome, FiFolder, FiEdit2, FiTrendingUp, FiCpu, FiMail } from "react-icons/fi";
 import Magnetic from "./Magnetic";
 
 const navItems = [
   { icon: <FiHome />, label: "Home", target: "home" },
   { icon: <FiFolder />, label: "Portfolio", target: "portfolio" },
   { icon: <FiEdit2 />, label: "Blog", target: "blog" },
+  { icon: <FiTrendingUp />, label: "Progress", target: "progress" },
+  { icon: <FiCpu />, label: "LeetCode", target: "leetcode" },
   { icon: <FiMail />, label: "Contact", target: "contact" },
 ];
 

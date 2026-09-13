@@ -8,6 +8,8 @@ import RecentProjects from "./components/RecentProjects";
 import TechStack from "./components/TechStack";
 import PremiumTools from "./components/PremiumTools";
 import GithubStats from "./components/GithubStats";
+import DailyProgress from "./components/DailyProgress";
+import LeetCodeSection from "./components/LeetCodeSection";
 import BlogSection from "./components/BlogSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
@@ -68,6 +70,14 @@ function App() {
             <PremiumTools />
 
             <GithubStats />
+
+            <div id="progress" className="scroll-mt-36">
+              <DailyProgress />
+            </div>
+
+            <div id="leetcode" className="scroll-mt-36">
+              <LeetCodeSection />
+            </div>
 
             <div id="blog" className="scroll-mt-36">
               <BlogSection />
